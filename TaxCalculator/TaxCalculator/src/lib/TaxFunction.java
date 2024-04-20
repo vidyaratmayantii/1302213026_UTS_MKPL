@@ -15,31 +15,31 @@ public class TaxFunction {
 	 */
 	
 	
-	public static int calculateTax(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking, int deductible, boolean isMarried, int numberOfChildren) {
-		validateMonthWorking(numberOfMonthWorking);
-		int taxableIncome = calculateTaxableIncome(monthlySalary, otherMonthlyIncome, numberOfMonthWorking);
-		int taxExemption = calculateTaxExemption(isMarried, numberOfChildren);
-		int tax = (int) Math.round(0.05 * (taxableIncome - deductible - taxExemption));
-		return Math.max(0, tax); 
-	}
+	public static int calculateTax(TaxCalculationInput input) {
+        validateNumberOfMonthsWorked(input.getNumberOfMonthsWorked());
+        int taxableIncome = calculateTaxableIncome(input);
+        int taxExemption = calculateTaxExemption(input);
+        int tax = (int) Math.round(0.05 * (taxableIncome - input.getDeductible() - taxExemption));
+        return Math.max(0, tax);
+    }
 
-	private static void validateMonthWorking(int numberOfMonthWorking) {
-		if (numberOfMonthWorking > 12) {
-			throw new IllegalArgumentException("More than 12 months working per year");
-		}
-	}
+    private static void validateNumberOfMonthsWorked(int numberOfMonthsWorked) {
+        if (numberOfMonthsWorked > 12 || numberOfMonthsWorked <= 0) {
+            throw new IllegalArgumentException("Invalid number of months worked");
+        }
+    }
 
-	private static int calculateTaxableIncome(int monthlySalary, int otherMonthlyIncome, int numberOfMonthWorking) {
-		return (monthlySalary + otherMonthlyIncome) * numberOfMonthWorking;
-	}
+    private static int calculateTaxableIncome(TaxCalculationInput input) {
+        return (input.getMonthlySalary() + input.getOtherMonthlyIncome()) * input.getNumberOfMonthsWorked();
+    }
 
-	private static int calculateTaxExemption(boolean isMarried, int numberOfChildren) {
-		int taxExemption = 54000000;
-		if (isMarried) {
-			taxExemption += 4500000; 
-		}
-		taxExemption += Math.min(numberOfChildren, 3) * 4500000; 
-		return taxExemption;
-	}
+    private static int calculateTaxExemption(TaxCalculationInput input) {
+        int taxExemption = 54000000;
+        if (input.isMarried()) {
+            taxExemption += 4500000;
+        }
+        taxExemption += Math.min(input.getNumberOfChildren(), 3) * 4500000;
+        return taxExemption;
+    }
 
 }

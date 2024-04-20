@@ -17,6 +17,7 @@ public class TaxCalculationInput {
         this.numberOfChildren = numberOfChildren;
     }
 
+    // Getters
     public Salary getMonthlySalary() {
         return monthlySalary;
     }
