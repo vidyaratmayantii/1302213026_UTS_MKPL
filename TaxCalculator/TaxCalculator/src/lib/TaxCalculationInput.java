@@ -1,27 +1,28 @@
 package lib;
 
 public class TaxCalculationInput {
-    private int monthlySalary;
-    private int otherMonthlyIncome;
+    private Salary monthlySalary;
+    private Salary otherMonthlyIncome;
     private int numberOfMonthsWorked;
-    private int deductible;
-    private boolean isMarried;
-    private int numberOfChildren;
+    private Deductible deductible;
+    private MaritalStatus maritalStatus;
+    private NumberOfChildren numberOfChildren;
 
-    public TaxCalculationInput(int monthlySalary, int otherMonthlyIncome, int numberOfMonthsWorked, int deductible, boolean isMarried, int numberOfChildren) {
+    public TaxCalculationInput(Salary monthlySalary, Salary otherMonthlyIncome, int numberOfMonthsWorked, Deductible deductible, MaritalStatus maritalStatus, NumberOfChildren numberOfChildren) {
         this.monthlySalary = monthlySalary;
         this.otherMonthlyIncome = otherMonthlyIncome;
         this.numberOfMonthsWorked = numberOfMonthsWorked;
         this.deductible = deductible;
-        this.isMarried = isMarried;
+        this.maritalStatus = maritalStatus;
         this.numberOfChildren = numberOfChildren;
     }
 
-    public int getMonthlySalary() {
+    // Getters
+    public Salary getMonthlySalary() {
         return monthlySalary;
     }
 
-    public int getOtherMonthlyIncome() {
+    public Salary getOtherMonthlyIncome() {
         return otherMonthlyIncome;
     }
 
@@ -29,15 +30,15 @@ public class TaxCalculationInput {
         return numberOfMonthsWorked;
     }
 
-    public int getDeductible() {
+    public Deductible getDeductible() {
         return deductible;
     }
 
-    public boolean isMarried() {
-        return isMarried;
+    public MaritalStatus getMaritalStatus() {
+        return maritalStatus;
     }
 
-    public int getNumberOfChildren() {
+    public NumberOfChildren getNumberOfChildren() {
         return numberOfChildren;
     }
 }
