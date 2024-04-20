@@ -30,7 +30,6 @@ public class Employee {
         this.salaryGrade = salaryGrade;
         this.dependents = new ArrayList<>();
     }
-
     public void setSpouse(String spouseName, String spouseIdNumber) {
         this.spouse = new Spouse(spouseName, spouseIdNumber);
     }
